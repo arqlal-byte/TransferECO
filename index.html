@@ -45,6 +45,10 @@
     .after{margin:18px auto 5px;color:#656565;font-size:14px}
     #continuar{border:0;background:transparent;text-decoration:underline;text-underline-offset:3px;color:#753b40;cursor:pointer;padding:13px;font:inherit;font-size:15px}
     #continuar:focus-visible,.btn:focus-visible{outline:3px solid #222;outline-offset:3px}
+    .admin-shortcut{position:fixed;right:max(12px,env(safe-area-inset-right));top:max(10px,env(safe-area-inset-top));z-index:20;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;text-decoration:none;color:#83121e;background:#ffffffea;border:1px solid #efd4d7;box-shadow:0 3px 12px #79000f19}
+    .admin-shortcut svg{display:block;width:21px;height:21px}
+    .admin-shortcut:hover{background:#fff1f2;color:#aa0013}
+    .admin-shortcut:focus-visible{outline:3px solid #222;outline-offset:3px}
     #acceso{max-width:420px}
     #acceso .logo{width:clamp(140px,50vw,210px);height:auto;aspect-ratio:1;border-radius:30px;margin-bottom:26px}
     #acceso h1{font-size:clamp(29px,8vw,35px)}
@@ -56,6 +60,12 @@
   </style>
 </head>
 <body>
+  <a id="adminAcceso" class="admin-shortcut" href="https://script.google.com/macros/s/AKfycbwpWS4HwQWJ8dFGPEt-75Nd3QZZM44KGW_W8gY6UmTf5VFOjgG7YYI_GavIsRDukRwIHQ/exec?portal=admin" aria-label="Abrir panel de administración" title="Administración">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06-1.9 1.9-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.52V21h-2.7v-.09a1.65 1.65 0 0 0-1.1-1.55 1.65 1.65 0 0 0-1.8.37l-.07.06-1.9-1.9.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.52-1H4v-2.7h.09a1.65 1.65 0 0 0 1.55-1.1 1.65 1.65 0 0 0-.37-1.8l-.06-.07 1.9-1.9.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1-1.52V4h2.7v.09a1.65 1.65 0 0 0 1.1 1.55 1.65 1.65 0 0 0 1.8-.37l.07-.06 1.9 1.9-.06.06a1.65 1.65 0 0 0-.33 1.82 1.65 1.65 0 0 0 1.52 1H20v2.7h-.09a1.65 1.65 0 0 0-1.55 1.1 1.65 1.65 0 0 0 .37 1.8z" transform="translate(-.25 -.25) scale(.98)"/>
+    </svg>
+  </a>
   <main id="instalar" aria-labelledby="install-title">
     <img class="logo" src="./icons/icon-192.webp" width="112" height="112" alt="TransferECO">
     <h1 id="install-title">Instala TransferECO</h1>
