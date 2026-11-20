@@ -24,6 +24,10 @@ Una vez instalada, la pantalla de instrucciones ya no se muestra y aparece el bo
 
 **Nota:** TransferECO en GitHub Pages es únicamente una pantalla de acceso y de instalación. La aplicación real sigue en Google Apps Script. Por restricciones de navegación entre dominios, el sistema de Apps Script puede abrirse fuera de la ventana independiente de la PWA.
 
+## Acceso administrativo
+
+La esquina superior derecha de la pantalla de instalación y de acceso incluye un engrane pequeño que abre el panel administrativo del mismo despliegue de Apps Script mediante `?portal=admin`. El panel conserva sus mecanismos propios de autenticación y autorización. El engrane aparece en la pantalla de GitHub Pages; no modifica la interfaz interna del vendedor alojada en Apps Script.
+
 ## Archivos
 
 - `index.html`: pantalla de instalación y acceso.
