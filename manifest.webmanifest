@@ -1,0 +1,29 @@
+{
+  "name": "TransferECO",
+  "short_name": "TransferECO",
+  "description": "Acceso al sistema TransferECO de registro de transferencias.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone"
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#bc0016",
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "./icons/icon-192.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}
