@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#bc0016">
+  <meta name="description" content="Acceso a TransferECO, el sistema de registro de transferencias.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TransferECO">
+  <title>TransferECO</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/webp" sizes="192x192" href="./icons/icon-192.webp">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+  <style>
+    :root{color-scheme:light;--rojo:#bc0016;--rojo-oscuro:#79000f;--texto:#292929}
+    *{box-sizing:border-box}
+    html,body{min-height:100%;margin:0}
+    body{font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--texto);background:linear-gradient(160deg,#fff 0%,#fff 50%,#fff3f3 100%);display:flex;justify-content:center;align-items:center;padding:24px}
+    main{width:min(100%,410px);text-align:center;padding:28px 22px 18px}
+    .logo{width:clamp(146px,52vw,215px);height:auto;aspect-ratio:1;object-fit:contain;display:block;margin:0 auto 24px;border-radius:32px;box-shadow:0 12px 30px #79000f22}
+    h1{font-size:clamp(27px,7vw,34px);letter-spacing:-.04em;margin:0;color:#8f0012;font-weight:800}
+    .intro{margin:10px auto 27px;max-width:300px;color:#575757;font-size:16px}
+    .btn{display:flex;align-items:center;justify-content:center;min-height:58px;width:100%;border-radius:15px;text-decoration:none;font-size:18px;font-weight:750;color:white;background:linear-gradient(120deg,#e51d2a,var(--rojo));box-shadow:0 8px 19px #9c001a34;transition:transform .15s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn:focus-visible{outline:3px solid #343434;outline-offset:4px}
+    small{display:block;margin-top:25px;color:#777;font-size:13px;line-height:1.4}
+    .tip{margin-top:18px;color:#565656;font-size:13px}
+    @media(display-mode:standalone){.tip{display:none}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="./icons/icon-512.webp" width="215" height="215" alt="Ícono rojo y blanco de TransferECO">
+    <h1>TransferECO</h1>
+    <p class="intro">Acceso al sistema de registro de transferencias.</p>
+    <a class="btn" href="https://script.google.com/macros/s/AKfycbwpWS4HwQWJ8dFGPEt-75Nd3QZZM44KGW_W8gY6UmTf5VFOjgG7YYI_GavIsRDukRwIHQ/exec">Abrir aplicación</a>
+    <p class="tip">Para agregar el ícono al iPhone: en Safari, toca Compartir y después «Añadir a pantalla de inicio».</p>
+    <small>Requiere conexión a Internet. Los registros se realizan en la aplicación original, no en esta página.</small>
+  </main>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+    }
+  </script>
+</body>
+</html>
