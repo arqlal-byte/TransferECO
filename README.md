@@ -1,19 +1,38 @@
 # TransferECO
 
-Acceso móvil a TransferECO mediante GitHub Pages.
+**Acceso para celular:** https://arqlal-byte.github.io/TransferECO/
 
-**Página instalable:** https://arqlal-byte.github.io/TransferECO/
+**Aplicación de Google Apps Script:** https://script.google.com/macros/s/AKfycbwpWS4HwQWJ8dFGPEt-75Nd3QZZM44KGW_W8gY6UmTf5VFOjgG7YYI_GavIsRDukRwIHQ/exec
 
-**Aplicación original:** https://script.google.com/macros/s/AKfycbwpWS4HwQWJ8dFGPEt-75Nd3QZZM44KGW_W8gY6UmTf5VFOjgG7YYI_GavIsRDukRwIHQ/exec
+## Instalación en el celular
 
-## Uso
+Se muestra una pantalla de instalación inicial **semejante a Mi Persona ECO**. Incluye el ícono rojo de TransferECO, instrucciones separadas para ambos sistemas y un botón **Continuar en el navegador** para quien no quiera instalar.
 
-1. Abrir la página de GitHub Pages en Safari (iPhone) o Chrome (Android).
-2. Utilizar la opción del navegador «Añadir a pantalla de inicio».
-3. Abrir desde el ícono de TransferECO y pulsar «Abrir aplicación».
+### iPhone y iPad (Safari)
 
-El repositorio contiene una pantalla de acceso con ícono rojo original (WebP) y Apple Touch (PNG), manifiesto PWA y service worker para la pantalla inicial. Los registros y la autenticación siguen alojados en Google Apps Script; la navegación puede salir de la ventana independiente por restricciones del navegador. No se guarda información de cobros en GitHub Pages.
+1. Pulsa **Compartir**.
+2. Selecciona **Añadir a pantalla de inicio**.
+3. Pulsa **Añadir**.
 
-## Publicación
+### Android (Chrome)
+
+1. Pulsa el menú **⋮** del navegador.
+2. Selecciona **Instalar aplicación** o **Añadir a pantalla de inicio**, según la opción disponible.
+3. Confirma **Instalar** o **Añadir**.
+
+Una vez instalada, la pantalla de instrucciones ya no se muestra y aparece el botón **Abrir aplicación**. Si se continúa en el navegador sin instalar, la misma pantalla de acceso estará disponible durante esa visita.
+
+**Nota:** TransferECO en GitHub Pages es únicamente una pantalla de acceso y de instalación. La aplicación real sigue en Google Apps Script. Por restricciones de navegación entre dominios, el sistema de Apps Script puede abrirse fuera de la ventana independiente de la PWA.
+
+## Archivos
+
+- `index.html`: pantalla de instalación y acceso.
+- `manifest.webmanifest`: metadatos PWA para el acceso.
+- `sw.js`: caché local del acceso; no intercepta el dominio de Apps Script.
+- `icons/`: versiones del ícono rojo de TransferECO.
+
+## Configuración de publicación
 
 GitHub Pages: rama `main`, carpeta `/ (root)`.
+
+No guardar credenciales, registros de cobro, tokens ni datos personales en este repositorio público.
