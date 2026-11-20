@@ -1,6 +1,6 @@
 /* TransferECO: caché exclusivo de la pantalla de acceso. Nunca interceptar Apps Script. */
-const CACHE_NAME = "transfereco-acceso-v1";
-const SHELL = ["./","./index.html","./manifest.webmanifest","./icons/icon.svg"];
+const CACHE_NAME = "transfereco-acceso-v2";
+const SHELL = ["./","./index.html","./manifest.webmanifest","./icons/icon.svg","./icons/icon-192.webp","./icons/apple-touch-icon.png"];
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting()));
 });
