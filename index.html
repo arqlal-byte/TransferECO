@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#bc0016">
-  <meta name="description" content="Acceso a TransferECO, el sistema de registro de transferencias.">
+  <meta name="description" content="TransferECO: acceso móvil al sistema de registro de transferencias.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="TransferECO">
@@ -12,37 +12,103 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/webp" sizes="192x192" href="./icons/icon-192.webp">
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+  <script>
+    /* Mismo comportamiento de instalación inicial usado en Mi Persona ECO. */
+    (function () {
+      var installed = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+      var mobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if (mobile && !installed) document.documentElement.classList.add('eco-install-first');
+    })();
+  </script>
   <style>
-    :root{color-scheme:light;--rojo:#bc0016;--rojo-oscuro:#79000f;--texto:#292929}
+    :root{color-scheme:light;--rojo:#bc0016;--rojo-oscuro:#79000f;--texto:#262626;--gris:#666;--borde:#ead7d9}
     *{box-sizing:border-box}
     html,body{min-height:100%;margin:0}
-    body{font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--texto);background:linear-gradient(160deg,#fff 0%,#fff 50%,#fff3f3 100%);display:flex;justify-content:center;align-items:center;padding:24px}
-    main{width:min(100%,410px);text-align:center;padding:28px 22px 18px}
-    .logo{width:clamp(146px,52vw,215px);height:auto;aspect-ratio:1;object-fit:contain;display:block;margin:0 auto 24px;border-radius:32px;box-shadow:0 12px 30px #79000f22}
-    h1{font-size:clamp(27px,7vw,34px);letter-spacing:-.04em;margin:0;color:#8f0012;font-weight:800}
-    .intro{margin:10px auto 27px;max-width:300px;color:#575757;font-size:16px}
-    .btn{display:flex;align-items:center;justify-content:center;min-height:58px;width:100%;border-radius:15px;text-decoration:none;font-size:18px;font-weight:750;color:white;background:linear-gradient(120deg,#e51d2a,var(--rojo));box-shadow:0 8px 19px #9c001a34;transition:transform .15s ease}
-    .btn:hover{transform:translateY(-1px)}
-    .btn:focus-visible{outline:3px solid #343434;outline-offset:4px}
-    small{display:block;margin-top:25px;color:#777;font-size:13px;line-height:1.4}
-    .tip{margin-top:18px;color:#565656;font-size:13px}
-    @media(display-mode:standalone){.tip{display:none}}
-    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    body{font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--texto);background:linear-gradient(160deg,#fff,#fff7f7)}
+    main{width:min(100%,520px);margin:auto;text-align:center;padding:28px 18px 36px}
+    body{display:flex;align-items:center;justify-content:center}
+    .logo{width:112px;height:112px;object-fit:cover;border-radius:25px;display:block;margin:0 auto 16px;box-shadow:0 8px 23px #79000f26}
+    h1{font-size:29px;line-height:1.15;letter-spacing:-.035em;color:var(--rojo-oscuro);margin:0;font-weight:800}
+    .lead{color:var(--gris);margin:9px auto 22px;max-width:360px;font-size:16px}
+    #instalar{display:none}
+    html.eco-install-first #instalar{display:block}
+    html.eco-install-first #acceso{display:none}
+    .guide{border:1px solid var(--borde);background:white;border-radius:20px;padding:18px;text-align:left;margin:13px 0;box-shadow:0 3px 10px #7b12120a}
+    .guide-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .guide-symbol{display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:50%;font-weight:800;font-size:26px;color:var(--rojo);background:#fff0f1}
+    .guide h2{font-size:19px;line-height:1.15;margin:0 0 3px;color:#322326}
+    .guide small{font-size:13px;color:#777}
+    .step{display:flex;align-items:flex-start;gap:11px;margin:11px 0;font-size:15px;line-height:1.4}
+    .num{display:grid;place-items:center;flex:none;width:27px;height:27px;border-radius:50%;font-size:14px;font-weight:800;background:var(--rojo);color:white}
+    .step strong{font-weight:750}
+    .after{margin:18px auto 5px;color:#656565;font-size:14px}
+    #continuar{border:0;background:transparent;text-decoration:underline;text-underline-offset:3px;color:#753b40;cursor:pointer;padding:13px;font:inherit;font-size:15px}
+    #continuar:focus-visible,.btn:focus-visible{outline:3px solid #222;outline-offset:3px}
+    #acceso{max-width:420px}
+    #acceso .logo{width:clamp(140px,50vw,210px);height:auto;aspect-ratio:1;border-radius:30px;margin-bottom:26px}
+    #acceso h1{font-size:clamp(29px,8vw,35px)}
+    #acceso .lead{margin-bottom:28px}
+    .btn{display:flex;align-items:center;justify-content:center;min-height:58px;width:100%;border-radius:14px;text-decoration:none;font-size:18px;font-weight:800;color:white;background:linear-gradient(120deg,#e51d2a,var(--rojo));box-shadow:0 8px 19px #9c001a30}
+    .note{margin:24px auto 0;font-size:13px;color:#747474;max-width:330px}
+    @media(min-width:700px){main{padding-top:42px;padding-bottom:42px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
-  <main>
-    <img class="logo" src="./icons/icon-192.webp" width="215" height="215" alt="Ícono rojo y blanco de TransferECO">
-    <h1>TransferECO</h1>
-    <p class="intro">Acceso al sistema de registro de transferencias.</p>
-    <a class="btn" href="https://script.google.com/macros/s/AKfycbwpWS4HwQWJ8dFGPEt-75Nd3QZZM44KGW_W8gY6UmTf5VFOjgG7YYI_GavIsRDukRwIHQ/exec">Abrir aplicación</a>
-    <p class="tip">Para agregar el ícono al iPhone: en Safari, toca Compartir y después «Añadir a pantalla de inicio».</p>
-    <small>Requiere conexión a Internet. Los registros se realizan en la aplicación original, no en esta página.</small>
+  <main id="instalar" aria-labelledby="install-title">
+    <img class="logo" src="./icons/icon-192.webp" width="112" height="112" alt="TransferECO">
+    <h1 id="install-title">Instala TransferECO</h1>
+    <p class="lead">Ten acceso directo desde tu celular. Solo necesitas hacerlo una vez.</p>
+
+    <section class="guide" aria-labelledby="ios-title">
+      <div class="guide-head">
+        <span class="guide-symbol" aria-hidden="true">□↑</span>
+        <div><h2 id="ios-title">iPhone / iPad</h2><small>Desde Safari</small></div>
+      </div>
+      <div class="step"><span class="num">1</span><span>Pulsa el botón <strong>Compartir</strong> (□↑).</span></div>
+      <div class="step"><span class="num">2</span><span>Selecciona <strong>«Añadir a pantalla de inicio»</strong>.</span></div>
+      <div class="step"><span class="num">3</span><span>Pulsa <strong>«Añadir»</strong>.</span></div>
+    </section>
+
+    <section class="guide" aria-labelledby="android-title">
+      <div class="guide-head">
+        <span class="guide-symbol" aria-hidden="true">⋮</span>
+        <div><h2 id="android-title">Android</h2><small>Desde Chrome</small></div>
+      </div>
+      <div class="step"><span class="num">1</span><span>Pulsa el menú <strong>⋮</strong> del navegador.</span></div>
+      <div class="step"><span class="num">2</span><span>Selecciona <strong>«Instalar aplicación»</strong> o <strong>«Añadir a pantalla de inicio»</strong>.</span></div>
+      <div class="step"><span class="num">3</span><span>Confirma <strong>«Instalar»</strong> o <strong>«Añadir»</strong>.</span></div>
+    </section>
+    <p class="after">Después abre TransferECO desde el nuevo ícono de tu pantalla.</p>
+    <button id="continuar" type="button">Continuar en el navegador</button>
   </main>
+
+  <main id="acceso" aria-labelledby="app-title">
+    <img class="logo" src="./icons/icon-192.webp" width="210" height="210" alt="Ícono rojo de TransferECO">
+    <h1 id="app-title">TransferECO</h1>
+    <p class="lead">Acceso al sistema de registro de transferencias.</p>
+    <a class="btn" href="https://script.google.com/macros/s/AKfycbwpWS4HwQWJ8dFGPEt-75Nd3QZZM44KGW_W8gY6UmTf5VFOjgG7YYI_GavIsRDukRwIHQ/exec">Abrir aplicación</a>
+    <p class="note">Requiere Internet. El sistema de cobros permanece en Google Apps Script.</p>
+  </main>
+
   <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
-    }
+    (function () {
+      var continuar = document.getElementById('continuar');
+      continuar.addEventListener('click', function () {
+        document.documentElement.classList.remove('eco-install-first');
+        var acceso = document.getElementById('acceso');
+        if (acceso) acceso.scrollIntoView();
+      });
+      window.addEventListener('appinstalled', function () {
+        document.documentElement.classList.remove('eco-install-first');
+      });
+      if ('serviceWorker' in navigator && window.isSecureContext) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).catch(function(){});
+        });
+      }
+    })();
   </script>
 </body>
 </html>
